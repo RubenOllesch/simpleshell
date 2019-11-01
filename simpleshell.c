@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 #include "util.h"
 
@@ -83,7 +84,19 @@ parse_line(char *line)
 int
 exec_cmd(char *args[])
 {
-	execvp(args[0], args);
+	pid_t pid = fork();
+
+	if (pid < 0)
+		die("shell: Could not create child to run command\n");
+
+	if (pid == 0) {
+		// Child; subprocess
+		execvp(args[0], args);
+	} else {
+		// Parent; shell
+		wait(NULL);	// Ignore status for now
+	}
+
 	return 1;
 }
 
