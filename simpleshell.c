@@ -4,24 +4,12 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "util.h"
 
 #define SHELL_INPUT_BUFSIZE	1024
 #define SHELL_TKN_BUFSIZE	64
 
 #define SHELL_ARG_DELIM		" \t\r"
-
-void
-die(const char *fmt, ...)
-{
-	va_list vl;
-	va_start(vl, fmt);
-
-	vfprintf(stderr, fmt, vl);
-
-	va_end(vl);
-
-	exit(EXIT_FAILURE);
-}
 
 void
 print_prompt()
