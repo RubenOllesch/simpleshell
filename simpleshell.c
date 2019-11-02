@@ -109,8 +109,14 @@ main(int argc, char *argv[])
 
 	while(1) {
 		print_prompt();
+
 		line = read_line();
+
+		if (line[0] == '\0')
+			continue;
+
 		args = parse_line(line);
+
 		exec_cmd(args);
 	}
 }
