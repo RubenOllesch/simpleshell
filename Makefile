@@ -1,5 +1,5 @@
 CC:=$(CC) $(CFLAGS)
-OBJ:=simpleshell.o util.o
+OBJ:=simpleshell.o builtin.o util.o
 
 %.o: %.c
 	$(CC) -c $< -o $@

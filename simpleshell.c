@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 
 #include "util.h"
+#include "builtin.h"
 
 #define SHELL_INPUT_BUFSIZE	1024
 #define SHELL_TKN_BUFSIZE	64
@@ -84,6 +85,9 @@ parse_line(char *line)
 int
 exec_cmd(char *args[])
 {
+	if (try_runbuiltin(args))
+		return 1;
+
 	pid_t pid = fork();
 
 	if (pid < 0)
