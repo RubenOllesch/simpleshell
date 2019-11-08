@@ -92,6 +92,8 @@ exec_cmd(char *args[])
 	if (pid == 0) {
 		// Child; subprocess
 		execvp(args[0], args);
+		printf("shell: Could not execute program: %s\n", args[0]);
+		exit(EXIT_FAILURE);
 	} else {
 		// Parent; shell
 		wait(NULL);	// Ignore status for now
