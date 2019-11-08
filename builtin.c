@@ -11,8 +11,9 @@ try_runbuiltin(char *args[])
 		exit(EXIT_SUCCESS);
 	} else if (strcmp("cd", args[0]) == 0) {
 		chdir(args[1]);
-		return true;
 	} else {
 		return false;
 	}
+
+	return true;	// Was builtin command
 }
