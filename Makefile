@@ -1,4 +1,5 @@
-OBJ=simpleshell.o util.o
+CC:=$(CC) $(CFLAGS)
+OBJ:=simpleshell.o util.o
 
 %.o: %.c
 	$(CC) -c $< -o $@
